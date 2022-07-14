@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Trigensoft Solutions Private Limited">
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static', filename='assets/images/brand/favicon.ico')}}" />
+
+    <!-- TITLE -->
+    <title>Flask – Register</title>
+
+    <!-- BOOTSTRAP CSS -->
+    <link id="style" href="{{url_for('static', filename='assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
+
+    <!-- STYLE CSS -->
+    <link href="{{url_for('static', filename='assets/css/style.css')}}" rel="stylesheet" />
+    <link href="{{url_for('static', filename='assets/css/dark-style.css')}}" rel="stylesheet" />
+    <link href="{{url_for('static', filename='assets/css/transparent-style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='assets/css/skin-modes.css')}}" rel="stylesheet" />
+
+    <!--- FONT-ICONS CSS -->
+    <link href="{{url_for('static', filename='assets/css/icons.css')}}" rel="stylesheet" />
+
+    <!-- COLOR SKIN CSS -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{url_for('static', filename='assets/colors/color1.css')}}" />
+<style>
+    .did-floating-label-content {
+        position: relative;
+        margin-bottom: 39px;
+    }
+
+    .did-floating-label {
+        color: #1e4c82;
+        font-size: 13px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        left: 15px;
+        top: 11px;
+        padding: 0 5px;
+        background: #fff;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    .did-floating-input, .did-floating-select {
+        font-size: 12px;
+        display: block;
+        width: 100%;
+        height: 36px;
+        padding: 0 20px;
+        background: #fff;
+        color: #323840;
+        border: 1px solid #3D85D8;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .did-floating-input:focus, .did-floating-select:focus {
+        outline: none;
+    }
+    .did-floating-input:focus ~ .did-floating-label, .did-floating-select:focus ~ .did-floating-label {
+        top: -8px;
+        font-size: 13px;
+    }
+    .button {
+        margin: auto!important;
+        width: 20%;
+    }  
+</style>
+</head>
+
+<body class="app sidebar-mini ltr">
+    <div>
+        {% include 'global_loader.html' %}
+        <!-- PAGE -->
+        <div class="page">
+            <div class="">
+                <div class="container-login100">
+                    <div class="wrap-login100 p-6">
+                        <form class="login100-form validate-form row registration_form" action="javascript:void(0)">
+                            <span class="login100-form-title">
+                                Registration
+                            </span>
+                            <!-- <div class="col-md-1"></div> -->
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="did-floating-label-content">
+                                            <input class="did-floating-input" type="text" name="username" placeholder=" ">
+                                            <label class="did-floating-label">User Name</label>
+                                            <label class="text-danger username_error error-message"></label>
+                                        </div>
+                                        <div class="did-floating-label-content">
+                                            <input class="did-floating-input" type="email" name="email" placeholder=" ">
+                                            <label class="did-floating-label">Email</label>
+                                            <label class="text-danger email_error error-message"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="user-photo">
+                                            <input type="file" name="profile_pic" class="dropify" />
+                                            <label class="text-danger profile_pic_error error-message"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="did-floating-label-content">
+                                            <input class="did-floating-input" type="password" name="password" placeholder=" ">
+                                            <label class="did-floating-label">Password</label>
+                                            <label class="text-danger password_error error-message"></label>
+                                        </div>   
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="did-floating-label-content">
+                                            <input class="did-floating-input" type="password" name="confirm_password" placeholder=" ">
+                                            <label class="did-floating-label">Confirm Password </label>
+                                            <label class="text-danger confirm_password_error error-message"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select class="form-control  form-select did-floating-input select2" name="usertype">
+                                            <option value="">Select type</option>
+                                            <option value="DR">Director</option>
+                                            <option value="AC">Actor</option>
+                                            <option value="Actr">Actress</option>
+                                        </select>
+                                        <label class="text-danger usertype_error error-message"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-login100-form-btn button">
+                                <a href="javascript:void(0)" id="submit_form" class="login100-form-btn btn-primary">
+                                    Register
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- CONTAINER CLOSED -->
+            </div>
+        </div>
+        <!-- END PAGE -->
+
+    </div>
+    <!-- BACKGROUND-IMAGE CLOSED -->
+
+    <!-- JQUERY JS -->
+    <script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+    
+    <!-- BOOTSTRAP JS -->
+    <script src="{{url_for('static', filename='assets/plugins/bootstrap/js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+
+    <!-- Drag & drop file Upload  -->
+    <script src="{{url_for('static', filename='assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+    <!-- end file upload -->
+    
+    <!-- SHOW PASSWORD JS -->
+    <script src="{{url_for('static', filename='assets/js/show-password.min.js')}}"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="{{url_for('static', filename='assets/plugins/p-scroll/perfect-scrollbar.js')}}"></script>
+
+    <!-- Color Theme js -->
+    <script src="{{url_for('static', filename='assets/js/themeColors.js')}}"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="{{url_for('static', filename='assets/js/custom.js')}}"></script>
+    <!-- SWEET-ALERT JS -->
+    <script src="{{url_for('static', filename='assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
+    {% include 'csrftoken.html' %}
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Drag and drop a profile pic here or click',
+                'replace': 'Drag and drop or click to replace',
+                'remove': 'Remove',
+                'error': 'Ooops, something went wrong.'
+            },
+        });
+        $(document).on("click", '#submit_form', function(){
+            var element = $(this);
+            $(element).prop('disabled', true);
+            $("#global-loader").fadeIn("slow");
+            var form = new FormData($('.registration_form')[0]);
+            $.ajax({
+                type: 'post',
+                url: "{{url_for('user.register')}}",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    $(element).prop('disabled', false);
+                    $('.error-message').text('');
+                    $("#global-loader").fadeOut("fast");
+                    swal({
+                        title: `${data.title}`,
+                        text: `${data.desc}`,
+                        closeOnConfirm: false,
+                    }, function(inputValue) {
+                        window.location.href = "{{url_for('user.login')}}";
+                    });
+                },
+                error: function(data){
+                    $(element).prop('disabled', false);
+                    $('.error-message').text('');
+                    $("#global-loader").fadeOut("fast");
+                    if (data.status == 400){
+                        jQuery.each(data.responseJSON.error, function(element, messages){
+                            let message = "";
+                            messages.forEach(element => {
+                                message += element;
+                            });
+                            $(`.${element}_error`).text(message);
+                        })
+                    }
+                    else{
+                        swal({
+                            title: 'Encountered an error!',
+                            text: data.responseJSON.error,
+                            closeOnConfirm: false,
+                            type: 'error',
+                        });
+                    }
+                } 
+            })
+        })
+    })
+</script>
