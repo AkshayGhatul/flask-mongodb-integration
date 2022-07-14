@@ -1,7 +1,6 @@
 import wtforms
 from flask_wtf import FlaskForm
 from wtforms import validators
-from core.choices import USERTYPES
 from core.user.documents import User
 from flask_wtf.file import FileAllowed
 from core.upload_sets import PROFILE_PIC_SET
@@ -11,7 +10,6 @@ class UserRegistrationForm(FlaskForm):
     email = wtforms.EmailField(validators=[validators.DataRequired(), validators.Email(), validators.Length(max=100)])
     password = wtforms.StringField(validators=[validators.DataRequired()])
     confirm_password = wtforms.StringField(validators=[validators.DataRequired()])
-    usertype = wtforms.SelectField(validators=[validators.DataRequired()], choices=USERTYPES)
     profile_pic = wtforms.FileField(validators=[FileAllowed(PROFILE_PIC_SET, 'Only images are allowed.')])
 
     def validate_email(self, email):

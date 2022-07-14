@@ -1,7 +1,8 @@
 from flask import (Blueprint, render_template,
                 redirect, url_for, request, flash)
 from core.user.forms import UserRegistrationForm, LoginForm
-from core.user.documents import User, Tweet, TweetUser
+from core.user.documents import User
+from core.twitter.documents import Tweet, TweetUser
 from werkzeug.utils import secure_filename
 from core.utilities.bcrypt_password import get_password_hash
 from flask_login import (current_user, login_user,
@@ -47,7 +48,6 @@ def register():
                 user = User(
                     email = form.email.data,
                     username = form.username.data,
-                    usertype = form.usertype.data
                 )
                 profile_pic = form.profile_pic.data
                 if profile_pic:

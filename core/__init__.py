@@ -38,10 +38,12 @@ login_manager.init_app(app)
 # Register custom jinja template filters & cli commands
 with app.app_context():
     from core.jinja_filters import *
-    from core.cli_commands.run_migrations import * 
+    from core.cli_commands.migrate_db import * 
     from core.cli_commands.load_tweet_datasets import *
 
 # Register view blueprints
 from core.user.views import user_blueprint
+from core.twitter.views import twitter_blueprint
 
 app.register_blueprint(user_blueprint, url_prefix="/")
+app.register_blueprint(twitter_blueprint, url_prefix='/twitter')

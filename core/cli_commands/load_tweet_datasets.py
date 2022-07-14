@@ -1,7 +1,7 @@
 import click, os
 from flask import json
 from flask import current_app
-from core.user.documents import Tweet, TweetUser
+from core.twitter.documents import Tweet, TweetUser
 
 @current_app.cli.command("load_tweet_datasets")
 @click.command()

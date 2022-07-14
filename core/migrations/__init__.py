@@ -11,4 +11,5 @@ class MigrationUtils:
                 module = importlib.import_module('core.migrations.' + module_name) 
         for name, class_def in __MODEL_DICT__.items():
             instance = class_def()
-            instance()
+            for operation in instance.operations:
+                print(operation)
