@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block css %}
+{% endblock %}
+
+{% block content %}
+    <!-- PAGE-HEADER -->
+    <div class="page-header">
+        <h1 class="page-title">Users</h1>
+        <div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{url_for('user.dashboard')}}">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Users</li>
+            </ol>
+        </div>
+    </div>
+    <!-- PAGE-HEADER END -->
+    <!-- ROW-1 OPEN -->
+    <!-- Row -->
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-nowrap border-bottom" id="users-datatable">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Row -->
+{% endblock %}
+
+{% block js %}
+<!-- INTERNAL SELECT2 JS -->
+<script src="{{url_for('static', filename='assets/plugins/select2/select2.full.min.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/jszip.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugins/datatable/responsive.bootstrap5.min.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/table-data.js')}}"></script>
+<script>
+    $(document).ready(function(){
+        load_user_list();
+        function load_user_list(){
+            $('#users-datatable').DataTable({
+                language: {
+                    searchPlaceholder: 'Search...',
+                    scrollX: "100%",
+                    sSearch: '',
+                    "info":           "Showing _START_ to _END_ of _TOTAL_ users",
+                    "infoEmpty":      "Showing 0 to 0 of 0 users",
+                    "infoFiltered":   "(filtered from _MAX_ total users)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Show _MENU_ users",
+                    "emptyTable":     "No data available for users",
+                    "loadingRecords": "Loading...",
+                    "processing":     "Processing...",
+                },  
+                "order": [],
+                "processing": true,
+                "serverSide": true,
+                "bDestroy" : true,
+                "columnDefs": [
+                    { orderable: false, targets: 8 },
+                ],
+                "columns": [
+                    {'data': 'user_id', 'title': 'USER ID', "sClass": 'text-center'},
+                    {'data': 'name', 'title': 'NAME',"sClass": 'text-center'},
+                    {'data': 'verified', 'title': 'VERIFIED', "sClass": 'text-center'},
+                    {'data': 'tweet_count', 'title': 'TWEETS', "sClass": 'text-center'},
+                    {'data': 'followers_count', 'title': 'FOLLOWERS', "sClass": 'text-center'},
+                    {'data': 'friends_count', 'title': 'FRIEDNS', "sClass": 'text-center'},
+                    {'data': 'statuses_count', 'title': 'STATUSES', "sClass": 'text-center'},
+                    {'data': 'favourites_count', 'title': 'FAVOURITES', "sClass": 'text-center'},
+                    {'data': 'action', 'title': 'ACTION', "sClass": 'text-center'},
+                ],
+                "ajax": {
+                    type: "post",
+                    url:  "{{url_for('twitter.twitter_users')}}",
+                    dataFilter: function(data){
+                        var json = jQuery.parseJSON( data );
+                        // json.data.forEach(element => {
+                        //     element["event_name"] = `<span title="${normalize_spaces(element.event_name)}">${truncate_str(element.event_name, 30)}</span>`;
+                        // });
+                        return JSON.stringify(json);
+                    },
+                    error: function(data){
+                        swal({
+                            title: 'Encountered an error !',
+                            text: data.responseJSON.error,
+                            type: 'error',
+                        });
+                    },
+                },
+                "drawCallback": function( settings ) {
+                    
+                }
+            });
+        }
+    })
+</script>
+{% endblock %}

@@ -26,9 +26,8 @@
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i class="side-menu__icon fe fe-slack"></i><span class="side-menu__label">Twitter</span><i class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
                         <li class="side-menu-label1"><a href="javascript:void(0)">Twitter</a></li>
-                        <li><a href="cards.html" class="slide-item"> Users</a></li>
-                        <li><a href="crypto-currencies.html" class="slide-item"> Tweets</a></li>
-
+                        <li><a href="{{url_for('twitter.tweets')}}" class="slide-item"> Tweets</a></li>
+                        <li><a href="{{url_for('twitter.twitter_users')}}" class="slide-item"> Users</a></li>
                     </ul>
                 </li>
             </ul>
